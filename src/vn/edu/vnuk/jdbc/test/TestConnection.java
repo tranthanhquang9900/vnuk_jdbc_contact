@@ -15,7 +15,8 @@ import vn.edu.vnuk.jdbc.ConnectionFactory;
  */
 public class TestConnection {
     public static void main(String args[]) throws SQLException{
-        try (Connection connection = new ConnectionFactory().getConnection()) {
+        try {
+        	Connection connection = new ConnectionFactory().getConnection();
             System.out.println("Connection is open!");
             connection.close();
         }
