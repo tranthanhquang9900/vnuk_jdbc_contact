@@ -10,7 +10,7 @@ public class TestReadContact {
     public static void main(String args[]) throws SQLException{
 
         ContactDao contactDao = new ContactDao();
-        Contact contact = contactDao.read(4);
+        Contact contact = contactDao.read(1);
 
         System.out.println("Id: " + contact.getId());
         System.out.println("Name: " + contact.getName());

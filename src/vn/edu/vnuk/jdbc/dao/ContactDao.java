@@ -73,19 +73,7 @@ public class ContactDao {
             ResultSet results = statement.executeQuery();
 
             while(results.next()){
-
-                Contact contact = new Contact();
-                contact.setId(results.getLong("id"));
-                contact.setName(results.getString("name"));
-                contact.setEmail(results.getString("email"));
-                contact.setAddress(results.getString("address"));
-
-                Calendar date = Calendar.getInstance();
-                date.setTime(results.getDate("date_of_birth"));
-                contact.setDateOfBirth(date);
-
-                contacts.add(contact);
-
+        		contacts.add(buildContact(results));
             }
 
             results.close();
@@ -123,16 +111,7 @@ public class ContactDao {
             ResultSet results = statement.executeQuery();
 
             if(results.next()){
-
-                contact.setId(results.getLong("id"));
-                contact.setName(results.getString("name"));
-                contact.setEmail(results.getString("email"));
-                contact.setAddress(results.getString("address"));
-
-                Calendar date = Calendar.getInstance();
-                date.setTime(results.getDate("date_of_birth"));
-                contact.setDateOfBirth(date);
-
+        		contact = buildContact(results);
             }
 
             statement.close();
@@ -191,6 +170,28 @@ public class ContactDao {
             throw new RuntimeException(e);
         }
 
+    }
+    
+    
+    /*
+     * 
+     * 	PRIVATE METHODS
+     * 
+     */
+    
+    private Contact buildContact(ResultSet results) throws SQLException {
+    	
+        Contact contact = new Contact();
+        contact.setId(results.getLong("id"));
+        contact.setName(results.getString("name"));
+        contact.setEmail(results.getString("email"));
+        contact.setAddress(results.getString("address"));
+
+        Calendar date = Calendar.getInstance();
+        date.setTime(results.getDate("date_of_birth"));
+        contact.setDateOfBirth(date);
+        
+        return contact;
     }
     
 }

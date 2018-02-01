@@ -7,11 +7,19 @@ import java.sql.SQLException;
 public class ConnectionFactory {
 	public Connection getConnection() {
 		try {
+			/*
 			return DriverManager.getConnection(
-				"jdbc:mysql://localhost/vnuk", 
-				"root", 
-				System.getenv("DB_PWD")
-			);
+					"jdbc:mysql://localhost/vnuk", 
+					"root", 
+					System.getenv("DB_PWD")
+				);
+			*/
+			
+			return DriverManager.getConnection(
+					"jdbc:mysql://localhost/vnuk", 
+					"root", 
+					"PER180H"
+				);
 		}
 		
 		catch (SQLException e) {
