@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vn.edu.vnuk.jdbc.test;
+package vn.edu.vnuk.jdbc;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import vn.edu.vnuk.jdbc.ConnectionFactory;
 
 /**
  *
@@ -17,7 +16,8 @@ public class TestConnection {
     public static void main(String args[]) throws SQLException{
         try {
         	Connection connection = new ConnectionFactory().getConnection();
-            System.out.println("Connection is open!");
+            
+        	System.out.println("Connection is open!");
             connection.close();
         }
         

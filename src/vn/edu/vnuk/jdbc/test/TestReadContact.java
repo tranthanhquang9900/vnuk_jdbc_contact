@@ -18,7 +18,7 @@ public class TestReadContact {
         System.out.println("Address: " + contact.getAddress());
         
         System.out.println("Date of birth: " 
-            + (contact.getDateOfBirth() != null ? contact.getDateOfBirth().getTime() : null)
+            + (contact.getDateOfRegister() != null ? contact.getDateOfRegister().getTime() : null)
             + "\n");
 
     }

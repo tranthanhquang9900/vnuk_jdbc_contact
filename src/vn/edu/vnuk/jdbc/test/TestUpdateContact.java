@@ -15,7 +15,7 @@ public class TestUpdateContact {
         contact.setName("C.C. Cash");
         contact.setEmail("cccash@success.com");
         contact.setAddress("In the backseat of my Cadillac");
-        contact.setDateOfBirth(Calendar.getInstance());
+        contact.setDateOfRegister(Calendar.getInstance());
 
         ContactDao contactDao = new ContactDao();
         contactDao.update(contact);

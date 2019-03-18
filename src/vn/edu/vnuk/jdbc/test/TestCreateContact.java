@@ -12,10 +12,10 @@ public class TestCreateContact {
 		
 		Contact contact = new Contact();
 		
-		contact.setName("C.C. Cash");
-		contact.setEmail("cccash@success.com");
-		contact.setAddress("In the backseat of my Cadillac");
-		contact.setDateOfBirth(Calendar.getInstance());
+		contact.setName("B.B. Batch");
+		contact.setEmail("bbbatch@success.com");
+		contact.setAddress("In the backtick of my Cadillac");
+		contact.setDateOfRegister(Calendar.getInstance());
 		
 		
 		ContactDao contactDao = new ContactDao();

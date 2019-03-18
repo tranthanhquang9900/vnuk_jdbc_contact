@@ -5,20 +5,23 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionFactory {
+	
 	public Connection getConnection() {
+		return returnConnection("jdbc:mysql://localhost/vnuk");
+	}
+	
+	
+	public Connection getConnection(String url) {
+		return returnConnection(url);
+	}
+	
+	
+	private Connection returnConnection(String url) {
 		try {
-			/*
 			return DriverManager.getConnection(
-					"jdbc:mysql://localhost/vnuk", 
-					"root", 
+					url, 
+					System.getenv("DB_USR"), 
 					System.getenv("DB_PWD")
-				);
-			*/
-			
-			return DriverManager.getConnection(
-					"jdbc:mysql://localhost/vnuk", 
-					"root", 
-					"PER180H"
 				);
 		}
 		

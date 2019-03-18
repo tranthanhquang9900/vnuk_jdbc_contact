@@ -24,7 +24,7 @@ public class ContactDao {
     //  CREATE
     public void create(Contact contact) throws SQLException{
 
-    	String sqlQuery = "insert into contacts (name, email, address, date_of_birth) "
+    	String sqlQuery = "insert into contacts (name, email, address, date_of_register) "
                         +	"values (?, ?, ?, ?)";
 
         PreparedStatement statement;
@@ -37,7 +37,7 @@ public class ContactDao {
 	        statement.setString(2, contact.getEmail());
 	        statement.setString(3, contact.getAddress());
 	        statement.setDate(4, new java.sql.Date(
-	                        contact.getDateOfBirth().getTimeInMillis()
+	                        contact.getDateOfRegister().getTimeInMillis()
 	                )
 	        );
 	
@@ -130,14 +130,14 @@ public class ContactDao {
     //  UPDATE
     public void update(Contact contact) {
         String sqlQuery = "update contacts set name=?, email=?," 
-                            + "address=?, date_of_birth=? where id=?";
+                            + "address=?, date_of_register=? where id=?";
 
         try {
             PreparedStatement statement = connection.prepareStatement(sqlQuery);
             statement.setString(1, contact.getName());
             statement.setString(2, contact.getEmail());
             statement.setString(3, contact.getAddress());
-            statement.setDate(4, new Date(contact.getDateOfBirth().getTimeInMillis()));
+            statement.setDate(4, new Date(contact.getDateOfRegister().getTimeInMillis()));
             statement.setLong(5, contact.getId());
             statement.execute();
             statement.close();
@@ -188,8 +188,8 @@ public class ContactDao {
         contact.setAddress(results.getString("address"));
 
         Calendar date = Calendar.getInstance();
-        date.setTime(results.getDate("date_of_birth"));
-        contact.setDateOfBirth(date);
+        date.setTime(results.getDate("date_of_register"));
+        contact.setDateOfRegister(date);
         
         return contact;
     }

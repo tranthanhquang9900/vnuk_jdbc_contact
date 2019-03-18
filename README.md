@@ -1,3 +1,5 @@
 # README #
 
-Create an environment variable named DB_PWD: this will be the password to access your DB through your ConnectionFactory
+Create environment variables named DB_USR & DB_PWD : these will be the credentials to access your DB through your ConnectionFactory
+
+Run SQL0000RunAllQueries.java

@@ -20,7 +20,7 @@ public class TestReadContacts {
 			System.out.println("Email: " + contact.getEmail());
 			System.out.println("Address: " + contact.getAddress());
 			System.out.println("Date of birth: " +
-					contact.getDateOfBirth().getTime() + "\n");
+					contact.getDateOfRegister().getTime() + "\n");
 		}
 		
 	}
