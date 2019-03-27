@@ -39,7 +39,4 @@ public class Contact {
 	public void setDateOfRegister(Calendar dateOfRegister) {
 		this.dateOfRegister = dateOfRegister;
 	}
-	
-	
-	
 }
