@@ -41,7 +41,7 @@ public class ContactDao {
             // 	Executing statement
 			statement.execute();
 			statement.close();
-	        System.out.println("   DATA successfully loaded in \'categories\'");
+	        System.out.println("   DATA successfully loaded");
 		
 		}
 		
@@ -51,7 +51,7 @@ public class ContactDao {
 		}
 		
 		finally {
-			System.out.println("<  Sql5010InsertIntoCategories ended");
+			System.out.println("<  Insert ended");
 			System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 			System.out.println("");
 		}
@@ -77,7 +77,7 @@ public class ContactDao {
 			result.close();
 			// statement.executeQuery();
 			statement.close();
-	        System.out.println("   DATA successfully loaded in \'categories\'");
+	        System.out.println("   DATA successfully readed");
 		
 		}
 		
@@ -87,9 +87,7 @@ public class ContactDao {
 		}
 		
 		finally {
-			System.out.println("<  Sql5010InsertIntoCategories ended");
-			System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-			System.out.println("");
+			
 			connection.close();
 			return contacts;
 			
@@ -100,8 +98,6 @@ public class ContactDao {
 	@SuppressWarnings("finally")
 	public Contact read (long id) throws SQLException {
 		PreparedStatement statement;
-		System.out.println("Input id you want to read: ");
-		id = sc.nextLong();
 
 		String sqlQuery = "select * from contacts where id =" + id
 				+ ";";
@@ -120,7 +116,7 @@ public class ContactDao {
 			result.close();
 			// statement.executeQuery();
 			statement.close();
-	        System.out.println("   DATA successfully loaded in \'categories\'");
+	        System.out.println("   DATA successfully readed ");
 		
 		}
 		
@@ -130,13 +126,87 @@ public class ContactDao {
 		}
 		
 		finally {
-			System.out.println("<  Sql5010InsertIntoCategories ended");
-			System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-			System.out.println("");
-			connection.close();
+			
 			return contact;
 			
 		}
+	}
+	
+	public void update(Long id, Contact newContact) throws SQLException {
+
+		Contact contact = new Contact();
+
+		String sqlQuery = "update contacts set name = ?, email = ?, address = ? where id = " + id;
+
+		PreparedStatement statement;
+
+		try {
+			contact = read(id);
+			statement = connection.prepareStatement(sqlQuery);
+
+			statement.setString(1, newContact.getName());
+			statement.setString(2, newContact.getEmail());
+			statement.setString(3, newContact.getAddress());
+
+			if(contact != null) {
+				int rowsUpdated = statement.executeUpdate();
+
+				if(rowsUpdated > 0) {
+					System.out.println("Updated for ID number: " + id);
+				} else {
+					System.out.println("Error: ID NOT FOUND!");
+				}
+			} else {
+				System.out.println("Error: ID NOT FOUND!");
+			}
+
+			statement.close();
+		}
+
+		catch(Exception e) {
+			e.printStackTrace();
+			connection.close();
+		}
+
+		finally {
+			connection.close();
+		}
+	}
+	
+	public void delete(Long id) throws SQLException {
+		
+		Contact contact = new Contact();
+		
+		String sqlQuery = " delete from contacts where id = " + id
+				+ ";";
+		
+		PreparedStatement statement;
+		
+		try {
+			contact = read(id);
+			statement = connection.prepareStatement(sqlQuery);
+
+			int affectedRow = statement.executeUpdate();
+
+			if(affectedRow == 0) {
+				System.out.println("Error: ID NOT FOUND!");
+			} else {
+				System.out.println("Complete delete row number: " + affectedRow);
+			}
+
+
+
+			statement.close();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			connection.close();
+		}
+		
+		finally {
+			connection.close();
+		}
+		
 	}
 	
 	private Contact buildContact(ResultSet result) throws SQLException {
